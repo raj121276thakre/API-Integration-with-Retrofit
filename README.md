@@ -13,7 +13,9 @@ Step 2 : Add Internet permission in AndroidManifest.xml
 Step 3 : Create Data Model: Define data classes that represent the JSON response from the
          API.
 
-  data class Product(
+package com.example.apiapp.model
+
+data class Product(
     val availabilityStatus: String,
     val brand: String,
     val category: String,
@@ -37,7 +39,6 @@ Step 3 : Create Data Model: Define data classes that represent the JSON response
     val warrantyInformation: String,
     val weight: Int
 )
-
 
 Step 4 : Create Retrofit Interface: Define an interface that specifies the API endpoints.
 
