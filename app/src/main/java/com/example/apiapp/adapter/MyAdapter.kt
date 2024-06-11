@@ -1,17 +1,21 @@
-package com.example.apiapp
+package com.example.apiapp.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.apiapp.ProductDetailsActivity
+import com.example.apiapp.R
 import com.example.apiapp.model.Product
 import com.squareup.picasso.Picasso
 
 class MyAdapter(val context: Context, val productArrayList: List<Product>) :
     RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         lateinit var title: TextView
@@ -52,6 +56,19 @@ class MyAdapter(val context: Context, val productArrayList: List<Product>) :
 
         //imageview
         Picasso.get().load(currentItem.thumbnail).into(holder.image)
+
+
+        // Set click listener for the item view
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, ProductDetailsActivity::class.java)
+            intent.putExtra("TITLE", currentItem.title)
+            intent.putExtra("DESCRIPTION", currentItem.description)
+            intent.putExtra("PRICE", currentItem.price)
+            intent.putExtra("RATING", currentItem.rating)
+            intent.putExtra("THUMBNAIL", currentItem.thumbnail)
+            // Add more fields as needed
+            context.startActivity(intent)
+        }
 
     }
 
